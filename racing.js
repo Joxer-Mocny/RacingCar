@@ -38,11 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
  
         if (Math.random() < 0.02) {
             let obstacleX = Math.random() * (canvas.width - carWidth);
-            obstacles.push({ x: obstacleX, y: 0, width: carWidth, height: carHeight });
+            let newObstacle = { x: obstacleX, y: 0, width: carWidth, height: carHeight };
+            
+            let overlap = obstacles.some(obstacle =>{
+                return newObstacle.x < obstacle.x + obstacle.width &&
+                       newObstacle.x + newObstacle.width > obstacle.x &&
+                       newObstacle.y < obstacle.y + obstacle.height &&
+                       newObstacle.y + newObstacle.height > obstacle.y;
+            });
+            if (!overlap) {
+                obstacles.push(newObstacle);
+            }
         }
  
         obstacles.forEach(obstacle => {
-            obstacle.y += 5;
+            obstacle.y += 3;
             if (obstacle.y > canvas.height) {
                 obstacles.shift();
                 score++;
