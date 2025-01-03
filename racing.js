@@ -67,19 +67,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
  
     function drawGame() {
+
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "silver";
+     
+        // Draw the player's car
+        ctx.fillStyle = "red";
         ctx.fillRect(carX, carY, carWidth, carHeight);
- 
+     
+        // Draw wheels for the player's car
+        ctx.fillStyle = "black";
+        const wheelWidth = 8;
+        const wheelHeight = 8;
+        // Front wheels
+        ctx.fillRect(carX, carY, wheelWidth, wheelHeight);
+        ctx.fillRect(carX + carWidth - wheelWidth, carY, wheelWidth, wheelHeight);
+        // Rear wheels
+        ctx.fillRect(carX, carY + carHeight - wheelHeight, wheelWidth, wheelHeight);
+        ctx.fillRect(carX + carWidth - wheelWidth, carY + carHeight - wheelHeight, wheelWidth, wheelHeight);
+     
+        // Draw obstacles
         obstacles.forEach(obstacle => {
-            ctx.fillStyle = "red";
+            ctx.fillStyle = "grey";
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+     
+            // Draw wheels for obstacles
+            ctx.fillStyle = "black";
+            // Front wheels
+            ctx.fillRect(obstacle.x, obstacle.y, wheelWidth, wheelHeight);
+            ctx.fillRect(obstacle.x + obstacle.width - wheelWidth, obstacle.y, wheelWidth, wheelHeight);
+            // Rear wheels
+            ctx.fillRect(obstacle.x, obstacle.y + obstacle.height - wheelHeight, wheelWidth, wheelHeight);
+            ctx.fillRect(obstacle.x + obstacle.width - wheelWidth, obstacle.y + obstacle.height - wheelHeight, wheelWidth, wheelHeight);
         });
- 
+     
         ctx.fillStyle = "white";
         ctx.font = "20px Arial";
         ctx.fillText("Score: " + score, 10, 20);
-    }
+     }
  
     function gameOver() {
         gameIsRunning = false;

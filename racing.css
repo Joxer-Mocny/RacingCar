@@ -12,6 +12,7 @@ body {
 }
 
 canvas{
+    background-color: #2F4F4F;
     border: 2px solid #ffffff;
     box-sizing: border-box;
 }
@@ -22,6 +23,7 @@ h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
+
 
 #startButton {
     font-size: 1em;
