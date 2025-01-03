@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
-    const restartButton = document.getElementById("restartButton");
- 
+    const startButton = document.getElementById("startButton");
+
     let carX = canvas.width / 2 - 15;
     let carY = canvas.height - 60;
     let carWidth = 30;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         obstacles = [];
         score = 0;
         gameIsRunning = true;
-        restartButton.style.display = "none";
+        startButton.style.display = "none";
         gameLoop();
     }
  
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                        newObstacle.y + newObstacle.height > obstacle.y;
             });
             if (!overlap) {
-                obstacles.push(newObstacle);
+                obstacles.push(newObstacle)
             }
         }
  
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
     function gameOver() {
         gameIsRunning = false;
-        restartButton.style.display = "block";
+        startButton.style.display = "block";
     }
  
     document.addEventListener("keydown", (event) => {
@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
         velocityX = 0;
     });
  
-    restartButton.onclick = startGame;
+    startButton.onclick = startGame;
+
  
-    startGame();
  });
  
