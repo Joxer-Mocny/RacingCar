@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("startButton");
     const leftButton = document.getElementById("leftButton");
     const rightButton = document.getElementById("rightButton");
+    const instructions = document.getElementById("instructions")
  
     let carX = canvas.width / 2 - 15;
     let carY = canvas.height - 60;
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         score = 0;
         gameIsRunning = true;
         startButton.style.display = "none";
+        instructions.style.display= "none";
         gameLoop();
     }
  
@@ -54,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
  
         obstacles.forEach(obstacle => {
-            obstacle.y += 3;
+            obstacle.y += 1;
             if (obstacle.y > canvas.height) {
                 obstacles.shift();
                 score++;
@@ -111,13 +113,17 @@ document.addEventListener("DOMContentLoaded", () => {
         startButton.style.display = "block";
     }
  
-    leftButton.addEventListener("click", () => {
-        velocityX = -5;
-    });
- 
-    rightButton.addEventListener("click", () => {
-        velocityX = 5;
-    });
+    leftButton.addEventListener("touchstart", () => {
+        velocityX = -3; // Start moving left
+     });
+     
+     rightButton.addEventListener("touchstart", () => {
+        velocityX = 3; // Start moving right
+     });
+     
+     document.addEventListener("touchend", () => {
+        velocityX = 0; // Stop moving when the touch ends
+     });
  
     startButton.onclick = startGame;
  });
