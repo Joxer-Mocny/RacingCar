@@ -50,6 +50,8 @@ h1{
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    touch-action: manipulation;
  }
 
  #mobileControls button:active {
